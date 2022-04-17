@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Simple interface to make some music using a raspberry pi">
+	<meta name=apple-mobile-web-app-capable content=yes>
+	<meta name=apple-mobile-web-app-status-bar-style content=black>
+    <meta name="author" content="Robert Filter">
+	<!--<meta http-equiv="refresh" content="10">-->
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}"> 
+
+    <title>{{ title }}</title>
+    <!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}"> 
+	
+  </head>
+
+  <body>
+    <div class=uploadForm>
+      <form method="POST" action="" enctype="multipart/form-data">
+          <div class="container">
+            <div class="button-wrap">
+              <label class="button" for="upload">Select Files</label>
+              <input id="upload" type="file" name="file" multiple required>
+          </div>
+        </div>
+   
+      <input class=button type="submit" value="Upload files">
+      </form>
+      {% for file in files %}
+        <img src="{{ url_for('upload', filename=file) }}" style="width: 64px">
+      {% endfor %}
+    </div>
+  
+  </body>
+</html>

@@ -1,0 +1,10 @@
+# virtual environment
+my_env
+
+# images
+*.jpg
+*.jpeg
+*.png
+
+# temp files
+*.pyc

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Simple interface to make some music using a raspberry pi">
+	<meta name=apple-mobile-web-app-capable content=yes>
+	<meta name=apple-mobile-web-app-status-bar-style content=black>
+    <meta name="author" content="Robert Filter">
+	<meta http-equiv="refresh" content="2">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}" onclick="close_window();return false;"> 
+
+    <title>{{ title }}</title>
+    <!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}"> 
+	
+  </head>
+
+  <body>
+    {% if files|length > 0 %}
+    <div class=center>
+        {% for file in files %}
+        <a class=button href="{{ url_for('upload', filename=file) }}" download>Download file</a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <div class=qrCodeWd>
+        <div class=qrcode-2 id=qrcode-2 style=></div>
+    </div>
+	
+	<script type="text/javascript">
+
+    var qrcode = new QRCode(document.getElementById("qrcode-2"), {
+		text: "{{path}}",
+		width: 600,
+		height: 600,
+		colorDark : "#000000",
+		colorLight : "#ffffff",
+		correctLevel : QRCode.CorrectLevel.L
+	});
+	</script>
+    {% endif %}
+    
+    <!--
+	{% for file in files %}
+	    <img src="{{ url_for('upload', filename=file) }}" style="width: 64px">
+  	{% endfor %} -->
+  </body>
+</html>
